@@ -22,7 +22,6 @@ public class MedupConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/usuario").permitAll()
                         .requestMatchers("/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll()
-                        //o swagger está dando problema na hora de executar
 
                         .anyRequest().authenticated()).httpBasic((Customizer.withDefaults()));
 
