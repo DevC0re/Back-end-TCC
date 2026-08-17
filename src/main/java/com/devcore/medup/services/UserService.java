@@ -1,5 +1,6 @@
 package com.devcore.medup.services;
 
+import com.devcore.medup.dtos.reponse.UserResponseDTO;
 import com.devcore.medup.dtos.request.UserRequestDTO;
 import com.devcore.medup.entities.UserEntity;
 import com.devcore.medup.enums.Roles;
@@ -18,7 +19,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserEntity createUser(UserRequestDTO dto){
+    public String createUser(UserRequestDTO dto) {
 
         UserEntity user = new UserEntity();
 
@@ -29,6 +30,6 @@ public class UserService {
         user.setRoles(Roles.USER);
         userRepository.save(user);
 
-        return user;
+        return "Usuário criado com Sucesso";
     }
 }
