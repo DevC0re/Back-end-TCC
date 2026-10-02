@@ -8,6 +8,9 @@ import com.devcore.medup.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -32,4 +35,24 @@ public class UserService {
 
         return "Usuário criado com Sucesso";
     }
+
+    public List<UserEntity> listarTodosUsuarios() {
+        return userRepository.findAll();
+    }
+
+    public UserEntity buscarPorId(UUID id) {
+        return userRepository.findById(id).get();
+    }
+
+    public void atualizarUsuario(UUID id, UserRequestDTO dto) {
+        UserEntity user = buscarPorId(id);
+        user.setName(dto.getName());
+        user.setPassword(dto.getPassword());
+        userRepository.save(user);
+    }
+
+    public void deletarUsuario(UUID id) {
+        userRepository.deleteById(id);
+    }
+
 }
