@@ -44,10 +44,15 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public UserEntity buscarPorEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
     public void atualizarUsuario(UUID id, UserRequestDTO dto) {
         UserEntity user = buscarPorId(id);
         user.setName(dto.getName());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         userRepository.save(user);
     }
 
