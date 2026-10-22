@@ -1,4 +1,4 @@
-package com.devcore.medup.dtos;
+package com.devcore.medup.dtos.reponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

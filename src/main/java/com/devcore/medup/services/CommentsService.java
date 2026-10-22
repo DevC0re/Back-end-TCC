@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devcore.medup.dtos.CommentsRpsDto;
+import com.devcore.medup.dtos.reponse.CommentsRpsDto;
 import com.devcore.medup.dtos.CommentsRqsDto;
 import com.devcore.medup.entities.Comments;
 import com.devcore.medup.repositories.CommentsRepository;

@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.devcore.medup.dtos.CommentsRpsDto;
+import com.devcore.medup.dtos.reponse.CommentsRpsDto;
 import com.devcore.medup.dtos.CommentsRqsDto;
 import com.devcore.medup.services.CommentsService;
 
