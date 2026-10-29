@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.devcore.medup.dtos.HospitaisRsqDto;
-import com.devcore.medup.dtos.HospitaisRpsDto;
+import com.devcore.medup.dtos.reponse.HospitaisRpsDto;
 import com.devcore.medup.services.HospitaisService;
 
 import java.util.List;

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devcore.medup.dtos.HospitaisRsqDto;
-import com.devcore.medup.dtos.HospitaisRpsDto;
+import com.devcore.medup.dtos.reponse.HospitaisRpsDto;
 import com.devcore.medup.entities.HospitaisEntity;
 import com.devcore.medup.repositories.HospitaisRepository;
 
