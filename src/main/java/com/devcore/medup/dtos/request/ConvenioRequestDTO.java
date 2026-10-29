@@ -6,12 +6,14 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
+
 @Data
 public class ConvenioRequestDTO {
 
     @NotBlank(message = "O campo não pode ficar vazio")
     private String name;
-    private String hospitaisAceitos;
+    private List<String> hospitaisAceitos;
     @CNPJ(message = "Digite um cnpj válido")
     private String cnpj;
 }

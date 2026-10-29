@@ -1,5 +1,6 @@
 package com.devcore.medup.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,8 @@ public class ConvenioService {
     public ConvenioResponseDTO saveConvenio(ConvenioRequestDTO request) {
         ConvenioEntity convenio = new ConvenioEntity();
         convenio.setName(request.getName());
-        convenio.setHospitaisAceitos(request.getHospitaisAceitos());
+        convenio.setHospitaisAceitos(
+                request.getHospitaisAceitos() != null ? request.getHospitaisAceitos() : new ArrayList<>());
         convenio.setCnpj(request.getCnpj());
 
         ConvenioEntity save = repository.save(convenio);
@@ -49,7 +51,8 @@ public class ConvenioService {
                 .orElseThrow(() -> new RuntimeException("Convênio não encontrado com ID: " + id));
 
         convenio.setName(request.getName());
-        convenio.setHospitaisAceitos(request.getHospitaisAceitos());
+        convenio.setHospitaisAceitos(
+                request.getHospitaisAceitos() != null ? request.getHospitaisAceitos() : new ArrayList<>());
         convenio.setCnpj(request.getCnpj());
 
         ConvenioEntity save = repository.save(convenio);

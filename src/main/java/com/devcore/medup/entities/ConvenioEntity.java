@@ -9,12 +9,12 @@ import java.util.*;
 @Data
 public class ConvenioEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
-    private String hospitaisAceitos;
+    @ElementCollection
+    private List<String> hospitaisAceitos = new ArrayList<>();
     @Column(unique = true)
     private String cnpj;
 
