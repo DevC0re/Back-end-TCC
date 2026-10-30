@@ -1,14 +1,12 @@
 package com.devcore.medup.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -28,4 +26,7 @@ public class HospitaisEntity {
 
     @Email
     private String email;
+
+    @ManyToMany(mappedBy = "hospitais")
+    private Set<ConvenioEntity> convenios = new HashSet<>();
 }
