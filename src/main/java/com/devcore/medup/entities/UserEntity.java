@@ -31,4 +31,7 @@ public class UserEntity {
     // Usuários recém-cadastrados ficam inativos até confirmar o e-mail.
     @Column(nullable = false)
     private boolean active = false;
+    @ManyToOne
+    @JoinColumn(name = "convenio_id")
+    private ConvenioEntity convenio;
 }
