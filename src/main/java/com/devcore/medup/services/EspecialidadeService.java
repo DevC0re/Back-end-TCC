@@ -1,7 +1,7 @@
 package com.devcore.medup.services;
 
-import com.devcore.medup.dtos.EspecialidadeRpsDto;
-import com.devcore.medup.dtos.EspecialidadeRqsDto;
+import com.devcore.medup.dtos.reponse.EspecialidadeRpsDto;
+import com.devcore.medup.dtos.request.EspecialidadeRqsDto;
 import com.devcore.medup.entities.EspecialidadeEntity;
 import com.devcore.medup.repositories.EspecialidadeRepository;
 import lombok.RequiredArgsConstructor;

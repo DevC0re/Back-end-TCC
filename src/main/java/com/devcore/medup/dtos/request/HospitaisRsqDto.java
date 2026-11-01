@@ -1,19 +1,22 @@
-package com.devcore.medup.dtos;
+package com.devcore.medup.dtos.request;
 
-import java.util.UUID;
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class HospitaisRpsDto {
 
-    private UUID id;
+@AllArgsConstructor
+@Builder
+@Getter
+@NoArgsConstructor
+public class HospitaisRsqDto {
+    
     private String name;
     private String address;
     private String phone;
     private String cnpj;
     private String email;
+
 }

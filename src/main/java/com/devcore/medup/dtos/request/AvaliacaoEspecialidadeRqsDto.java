@@ -1,4 +1,4 @@
-package com.devcore.medup.dtos;
+package com.devcore.medup.dtos.request;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

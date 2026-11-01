@@ -28,4 +28,8 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "convenio_id")
     private ConvenioEntity convenio;
+
+    @Column(nullable = false)
+    private boolean active = false;
+
 }

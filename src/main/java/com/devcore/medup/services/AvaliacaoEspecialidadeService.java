@@ -1,7 +1,7 @@
 package com.devcore.medup.services;
 
-import com.devcore.medup.dtos.AvaliacaoEspecialidadeRpsDto;
-import com.devcore.medup.dtos.AvaliacaoEspecialidadeRqsDto;
+import com.devcore.medup.dtos.reponse.AvaliacaoEspecialidadeRpsDto;
+import com.devcore.medup.dtos.request.AvaliacaoEspecialidadeRqsDto;
 import com.devcore.medup.entities.AvaliacaoEspecialidadeEntity;
 import com.devcore.medup.entities.EspecialidadeEntity;
 import com.devcore.medup.entities.HospitaisEntity;

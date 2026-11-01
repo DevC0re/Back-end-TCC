@@ -22,9 +22,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody UserRequestDTO dto){
+    public ResponseEntity<String> createUser(@Valid @RequestBody UserRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(dto));
     }
+
 
     @GetMapping("/admin")
     public String admin(){

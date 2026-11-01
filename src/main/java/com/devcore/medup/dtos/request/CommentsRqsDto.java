@@ -1,4 +1,4 @@
-package com.devcore.medup.dtos;
+package com.devcore.medup.dtos.request;
 
 import com.devcore.medup.enums.AssessmentEnum;
 import com.devcore.medup.enums.StatusEnum;

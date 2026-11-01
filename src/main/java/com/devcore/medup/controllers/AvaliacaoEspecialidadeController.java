@@ -1,7 +1,7 @@
 package com.devcore.medup.controllers;
 
-import com.devcore.medup.dtos.AvaliacaoEspecialidadeRpsDto;
-import com.devcore.medup.dtos.AvaliacaoEspecialidadeRqsDto;
+import com.devcore.medup.dtos.reponse.AvaliacaoEspecialidadeRpsDto;
+import com.devcore.medup.dtos.request.AvaliacaoEspecialidadeRqsDto;
 import com.devcore.medup.services.AvaliacaoEspecialidadeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
