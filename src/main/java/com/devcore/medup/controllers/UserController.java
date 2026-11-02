@@ -26,7 +26,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(dto));
     }
 
-
     @GetMapping("/admin")
     public String admin(){
         return "Acesso ADMIN";
@@ -71,4 +70,3 @@ public class UserController {
                 .body("Você só pode acessar a sua própria conta.");
     }
 }
-

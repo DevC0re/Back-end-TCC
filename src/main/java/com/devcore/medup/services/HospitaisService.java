@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class HospitaisService {
 
     private final HospitaisRepository repository;
+    private final EnderecoService enderecoService;
 
     public HospitaisRpsDto saveHospitais(HospitaisRsqDto request) {
         HospitaisEntity hospitais = new HospitaisEntity();
@@ -30,6 +31,9 @@ public class HospitaisService {
         hospitais.setEmail(request.getEmail());
 
         repository.save(hospitais);
+        if (request.getEndereco() != null) {
+            enderecoService.salvarHospital(hospitais.getId(), request.getEndereco());
+        }
         return convertByRpsDto(hospitais);
     }
 
@@ -59,6 +63,7 @@ public class HospitaisService {
         response.setId(hospitais.getId());
         response.setName(hospitais.getName());
         response.setAddress(hospitais.getAddress());
+        response.setEndereco(enderecoService.buscarHospitalOuNulo(hospitais.getId()));
         response.setPhone(hospitais.getPhone());
         response.setCnpj(hospitais.getCnpj());
         response.setEmail(hospitais.getEmail());

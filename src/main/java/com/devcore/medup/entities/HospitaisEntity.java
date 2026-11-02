@@ -1,6 +1,9 @@
 package com.devcore.medup.entities;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -19,6 +22,12 @@ public class HospitaisEntity {
 
     private String name;
     private String address;
+
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToOne(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
+    private EnderecoEntity endereco;
     private String phone;
 
     @CNPJ

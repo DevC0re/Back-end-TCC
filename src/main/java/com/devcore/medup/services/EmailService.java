@@ -12,58 +12,38 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class EmailService {
-
-    private static final Logger log =
-            LoggerFactory.getLogger(EmailService.class);
-
+    private static final Logger log = LoggerFactory.getLogger(EmailService.class);
     private final JavaMailSender mailSender;
     private final String remetente;
 
-    public EmailService(
-            JavaMailSender mailSender,
-            @Value("${spring.mail.username:}") String remetente
-    ) {
+    public EmailService(JavaMailSender mailSender,
+                        @Value("${spring.mail.username:}") String remetente) {
         this.mailSender = mailSender;
         this.remetente = remetente;
     }
 
-    public void enviarCodigoConfirmacao(
-            String emailDestino,
-            String codigo
-    ) {
-
+    // Síncrono: falha SMTP provoca erro e impede cadastro silenciosamente incompleto.
+    public void enviarCodigoConfirmacao(String emailDestino, String codigo) {
         if (remetente.isBlank()) {
-            throw new ResponseStatusException(
-                    HttpStatus.SERVICE_UNAVAILABLE,
-                    "O serviço de e-mail não está configurado."
-            );
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+                    "O serviço de e-mail não está configurado.");
         }
 
         SimpleMailMessage mensagem = new SimpleMailMessage();
-
         mensagem.setFrom(remetente);
         mensagem.setTo(emailDestino);
         mensagem.setSubject("Código de confirmação - MedUp");
-
-        mensagem.setText(
-                "Olá!\n\nSeu código de confirmação do MedUp é: "
-                        + codigo
-                        + "\n\nO código expira em 10 minutos."
-                        + "\n\nSe você não criou esta conta, ignore."
-        );
+        mensagem.setText("Olá!\n\nSeu código de confirmação do MedUp é: " + codigo
+                + "\n\nO código expira em 10 minutos e só pode ser usado uma vez."
+                + "\n\nSe você não criou esta conta, ignore esta mensagem.");
 
         try {
             mailSender.send(mensagem);
-
         } catch (MailException e) {
-
-            log.error("Falha no envio de e-mail de confirmação.", e);
-
-            throw new ResponseStatusException(
-                    HttpStatus.SERVICE_UNAVAILABLE,
-                    "Não foi possível enviar o código.",
-                    e
-            );
+            // Não registrar o código em logs.
+            log.error("Falha de envio de confirmação por e-mail.", e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+                    "Não foi possível enviar o código de confirmação. Tente novamente.", e);
         }
     }
 }

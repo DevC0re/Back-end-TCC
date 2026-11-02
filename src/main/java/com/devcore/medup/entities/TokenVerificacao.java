@@ -7,7 +7,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "tokens_verificacao")
 public class TokenVerificacao {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -28,13 +27,9 @@ public class TokenVerificacao {
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private UserEntity usuario;
 
-    protected TokenVerificacao() {}
+    protected TokenVerificacao() { }
 
-    public TokenVerificacao(
-            String token,
-            LocalDateTime agora,
-            UserEntity usuario
-    ) {
+    public TokenVerificacao(String token, LocalDateTime agora, UserEntity usuario) {
         this.token = token;
         this.dataCriacao = agora;
         this.dataExpiracao = agora.plusMinutes(10);
@@ -46,9 +41,6 @@ public class TokenVerificacao {
     public LocalDateTime getDataExpiracao() { return dataExpiracao; }
     public LocalDateTime getDataCriacao() { return dataCriacao; }
     public int getTentativasInvalidas() { return tentativasInvalidas; }
+    public void incrementarTentativasInvalidas() { tentativasInvalidas++; }
     public UserEntity getUsuario() { return usuario; }
-
-    public void incrementarTentativasInvalidas() {
-        tentativasInvalidas++;
-    }
 }

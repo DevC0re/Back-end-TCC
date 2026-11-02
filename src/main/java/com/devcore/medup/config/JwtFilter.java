@@ -28,60 +28,23 @@ public class JwtFilter extends OncePerRequestFilter{
     }
 
     @Override
-    protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain
+                                    )
+        throws ServletException, IOException {
         String header = request.getHeader("Authorization");
-
-        if (header == null || !header.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        try {
+        if (header != null && header.startsWith("Bearer ")){
             String token = header.substring(7);
             String email = jwtService.pegarEmail(token);
-
-            if (email == null || email.isBlank()) {
-                throw new IllegalArgumentException("Token sem usuário");
-            }
-
             UserDetails user = userDetailsService.loadUserByUsername(email);
-
-            if (!user.isEnabled()) {
-                response.sendError(
-                        HttpServletResponse.SC_UNAUTHORIZED,
-                        "Conta não ativada"
+            if (user.isEnabled()) {
+                var auth = new UsernamePasswordAuthenticationToken(
+                        user, null, user.getAuthorities()
                 );
-                return;
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
-
-            var authentication = new UsernamePasswordAuthenticationToken(
-                    user,
-                    null,
-                    user.getAuthorities()
-            );
-
-            SecurityContextHolder.getContext()
-                    .setAuthentication(authentication);
-
-        } catch (
-                io.jsonwebtoken.JwtException |
-                IllegalArgumentException |
-                org.springframework.security.core.userdetails.UsernameNotFoundException e
-        ) {
-            SecurityContextHolder.clearContext();
-
-            response.sendError(
-                    HttpServletResponse.SC_UNAUTHORIZED,
-                    "Token inválido ou expirado"
-            );
-            return;
         }
-
         filterChain.doFilter(request, response);
     }
 }
