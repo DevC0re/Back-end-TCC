@@ -14,6 +14,11 @@ public class ConvenioEntity {
     private UUID id;
     private String name;
     @ElementCollection
+    @CollectionTable(
+            name = "convenio_entity_hospitais_aceitos",
+            joinColumns = @JoinColumn(name = "convenio_entity_id")
+    )
+    @Column(name = "hospitais_aceitos")
     private List<String> hospitaisAceitos = new ArrayList<>();
     @Column(unique = true)
     private String cnpj;
